@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    #d1 {
+      display: block;
+      perspective: 370px;
+      background-color: rgb(245, 176, 136) !important;
+      height: 247px;
+      float: right;
+      margin-right: 3.6%;
+      margin-bottom: 3.6%;
+      width: 38%;
+    }
+
+    .flipbox {
+      background-color: transparent !important;
+      height: 231px;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .flipbox:before {
+      content: "";
+      display: block;
+      position: absolute;
+      opacity: 0.1;
+      width: 200px;
+      height: 200px;
+      z-index: -1;
+      top: 20px;
+      left: 85px;
+    }
+
+
+    #d1 div .hStudent {
+
+      height: 115px;
+    }
+  </style>
+
+
+
+  <div class="container">
+
+    <section id="dg-container" class="dg-container">
+      <div class="dg-wrapper" align="center">
+
+
+        <div id="d1" class="bdy shdowCntnt flip-container" style="display: block; perspective: 370px;">
+
+          <div id="flp1" class="flipbox" style="transform: rotateY(0deg); opacity: 1; background: rgb(241, 89, 0);">
+            <div align="right" class="fctyGreenBold" style="color:#555; font-size:16px; margin-right:10px; ">لائحة الشرف:</div>
+            <p style="margin:0px; padding:0px" class="fctyGreenBold" dir="rtl" align="center">
+              كلية التربية
+              <br> الفصل الثاني من العام الدراسي 2014/2013
+            </p>
+            <div style="float:right; margin-top:11px;">
+              <img class="hStudent" src="http://via.placeholder.com/150x150" alt="" align="right">
+            </div>
+            <div class="fctyBlueShdow" style="font-size:12px; font-weight:bold; float:right; padding-right:12px; padding-top:11px; text-align:center">
+              الإسم: رنين غسان ابراهيم نزال
+              <br> المعدل: 87.08
+              <img style="margin-top: 15px;" src="http://via.placeholder.com/150x150" height="88" alt="" align="left">
+            </div>
+          </div>
+
+
+          <div id="c1" style="display:none;">
+            <div align="right" class="fctyGreenBold" style="color:#555; font-size:16px; margin-right:10px; ">لائحة الشرف:</div>
+            <p style="margin:0px; padding:0px" class="fctyGreenBold" dir="rtl" align="center">
+              كلية التربية
+              <br> الفصل الثاني من العام الدراسي 2014/2013
+            </p>
+            <div style="float:right; margin-top:11px;">
+              <img class="hStudent" src="http://via.placeholder.com/150x150" alt="" align="right">
+            </div>
+            <div class="fctyBlueShdow" style="font-size:12px; font-weight:bold; float:right; padding-right:12px; padding-top:11px; text-align:center">
+              الإسم: رنين غسان ابراهيم نزال
+              <br> المعدل: 87.08
+              <img style="margin-top: 15px;" src="http://via.placeholder.com/150x150" height="88" alt="" align="left">
+            </div>
+          </div>
+
+          <div id="txt1" style="width:400px; display:none;">
+            <p class="fctyBlueShdow" align="right" dir="rtl" style=" font-size:16px; padding-top:40px; float:right; padding-right:10px; ">
+              <strong>الإسم:</strong> رنين غسان ابراهيم نزال
+              <br>
+              <strong>الفرع:</strong> قلقيلية
+              <br>
+              <strong>المعدل:</strong> 87.08
+              <br>
+              <strong>التخصص:</strong> الخدمة الاجتماعية
+              <br>
+            </p>
+          </div>
+        </div>
+
+        
+      </div>
+
+    </section>
+  </div>
+
+
+  
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script src="http://www.brewguy.ca/stuff/flippy/jquery.flippy.min.js"></script>
+
+  <script>
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))) < 10) {
+      $("#flp1").on("mouseup", function (e) {
+        if ($("#flp1").hasClass("txt")) {
+          $("#flp1").revertFlip()
+          $("#flp1").removeClass("txt");
+        }
+        else {
+          $("#flp1").flip({
+            direction: 'lr',
+            content: $("#txt1"),
+            color: '#ffffff',
+            speed: 300
+          });
+          $("#flp1").addClass("txt");
+        }
+      });
+
+
+
+    }
+
+    else {
+      $("#flp1").on("mouseup", function (e) {
+        if ($("#flp1").hasClass("txt")) {
+          msLeaveFlip($("#flp1"), $("#c1"));
+          $("#flp1").removeClass("txt");
+        }
+        else {
+          msEnterFlip($("#flp1"), $("#txt1"));
+          $("#flp1").addClass("txt");
+        }
+      });
+
+
+    }
+
+    function msEnterFlip(ob, ob2) {
+      ob.flippy({
+        color_target: "#FCE7BA",
+        direction: "left",
+        duration: "500",
+        depth: "0.25",
+        verso: ob2.html()
+      });
+      ob.css("background-color", "transparent");
+      ob.css('background-color', '');
+    }
+    function msLeaveFlip(ob, ob2) {
+      ob.flippy({
+        color_target: "#FCE7BA",
+        direction: "right",
+        duration: "500",
+        depth: "0.25",
+        verso: ob2.html()
+      });
+      ob.css("background-color", "transparent");
+      ob.css('background-color', '');
+    }
+
+  </script>
+
+</body>
+
+</html>
